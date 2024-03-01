@@ -3,10 +3,11 @@
 using namespace std;
 
 int main() {
-    int t,a,b,c; cin>>t;
-    while(t--){
-        cin>>a>>b>>c;
-        (a+b==c)?cout<<"+\n":cout<<"-\n";
+    int tt, a, b, c; 
+    cin >> tt;
+    while (tt--){
+        cin >> a >> b >> c;
+        (a+b == c) ? cout << "+\n" : cout << "-\n";
     }
     return 0;
 }
