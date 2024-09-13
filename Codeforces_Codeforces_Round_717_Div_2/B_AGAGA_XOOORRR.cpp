@@ -15,7 +15,28 @@ int main() {
     int tt;
     cin >> tt;
     while (tt--) {
-        
+        int n;
+        cin >> n;
+        vector <ll> v(n);
+        readv(v, n);
+        ll ans = 0, aux = 0;
+        for (int i = 0; i < n; i++) {ans ^= v[i];}
+        if (ans == 0) {
+            cout << "YES" << nn;
+            continue;
+        }
+        bool can1 = 0, can2 = 0;
+        int i, j;
+        for (i = 0; i < n; i++) {
+            aux ^= v[i];
+            if (aux == ans) {can1 = 1; break;}
+        }
+        aux = 0;
+        for (j = n-1; j >= 0; j--) {
+            aux ^= v[j];
+            if (aux == ans) {can2 = 1; break;}
+        }
+        cout << ((can1 and can2 and i < j) ? "YES" : "NO") << nn;
     }
     return 0;
 }

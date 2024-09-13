@@ -1,0 +1,8 @@
+Juan 30 2500 
+Mariaa 25 3200.5 
+Pedro 28 2800.75 
+Ana 32 3000 
+Carlos 27 2700.25 
+Laura 29 2000.5 
+Yuri 50 6600 
+Angello 20 4e+006 
