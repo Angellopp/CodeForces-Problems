@@ -19,12 +19,6 @@ vector <int> fa(maxn);
 vector <pair<int,int>> es(maxn);
 vector <vector<int>> ances(maxn, vector<int>(20+5));
 
-// void imprimir(vector<int>* g) {
-//     for (int i = 1; i <= n; i++) {
-//         cout << i << " -> ";
-//         for (auto x : g[i]) cout << x << " "; cout << "\n";
-//     }
-// }
 int n;
 int t = 1;
 
