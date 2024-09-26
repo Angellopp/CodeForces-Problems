@@ -24,7 +24,6 @@ void sp(int s) {
     q.insert({0ll, s});
     while (!q.empty()) {
         ll v = q.begin()->second;
-        // dd(v);
         q.erase(q.begin());
         if(d[v] == INF or f[v]) continue;
         for (auto edge : adj[v]) {
@@ -37,37 +36,40 @@ void sp(int s) {
             }
         }
     }
-    // if (d[n-1] == INF) d[n-1] = -1;
-    // cout << d[n-1] << endl;
     for (int i = 0; i < n; i++) {
         cout << i+1 << ": " << d[i] << endl;
     }
 }
 void spc(int s) {
     dc.assign(n, INF);
-    dc[s] = 0;
+    dc[s] = f[s] ? 0 : INF;
     set<pair<ll, int>> q;
-    q.insert({0ll, s});
+    q.insert({dc[0], s});
     while (!q.empty()) {
         ll v = q.begin()->second;
         dd(v);
         q.erase(q.begin());
-        if(dc[v] == INF and !f[v]) continue;
+        // if(dc[v] == INF and !f[v]) continue;
         for (auto edge : adj[v]) {
             int to = edge.first;
             ll len = edge.second;
-            if (dc[v] + len < dc[to]) {
+            // if()
+            if (min(d[v] + len, dc[v]+len/2) < dc[to]) {
                 q.erase({dc[to], to});
-                dc[to] = min(d[to], dc[v] + len/2);
+                dc[to] = min(d[v]+len, dc[v] + len/2);
                 q.insert({dc[to], to});
             }
+            // if (dc[v]+len/2 < dc[to]) {
+            //     q.erase({dc[to], to});
+            //     dc[to] = dc[v] + len/2;
+            //     q.insert({dc[to], to});
+            // }
         }
     }
-    // if (d[n-1] == INF) d[n-1] = -1;
-    // cout << d[n-1] << endl;
     for (int i = 0; i < n; i++) {
         cout << i+1 << ": " << dc[i] << endl;
     }
+    
 }
 
 void solve() {
