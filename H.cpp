@@ -10,21 +10,22 @@
 using namespace std;
 const int INF = 1e9;
 
-void solve() {
-    // int
-    string s; 
-    while(cin >> s) {
-        if(s == "E") {
-            cout << "suricato\n";
-        }
-        if (s == "Sim,") {
-            cout << "facochero\n";   
-        }
-        if (s == "Os") {
-            cout << "leao\n";   
-        }
-    }
 
+void solve() {
+    int h, m, s;
+    cin >> h >> m >> s;
+    cout << "00:00" << endl; 
+    for (int i = 1; i < h; i++) {
+        int l = (m*i-h + (h-1-1))/(h-1);
+        int r = i*m/(h-1);
+        if(l > r or r == m) continue;
+        if(i < 10) cout << "0" << i;
+        else cout << i;
+        cout << ":";
+        if(l < 10) cout << "0" << l;
+        else cout << l;
+        cout << endl;
+    }
 }
 
 

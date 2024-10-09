@@ -8,32 +8,27 @@
 #define rall(x) x.rbegin(), x.rend()
 #define fastio ios_base::sync_with_stdio(false); cin.tie (NULL)
 using namespace std;
-const int INF = 1e9;
+
 
 void solve() {
-    // int
-    string s; 
-    while(cin >> s) {
-        if(s == "E") {
-            cout << "suricato\n";
-        }
-        if (s == "Sim,") {
-            cout << "facochero\n";   
-        }
-        if (s == "Os") {
-            cout << "leao\n";   
-        }
+    int n, k;
+    cin >> n >> k;
+    if (k == 1) {
+        cout << n << endl; return;
     }
-
+    int ans = 0;
+    while(n) {
+        ans += n - k * (n / k);
+        n /= k;
+    }
+    cout << ans << endl;
 }
-
 
 int main() {
     fastio;
     int tt = 1;
-    // cin >> tt;
+    cin >> tt;
     while(tt--) {
         solve();
     }
 }
-

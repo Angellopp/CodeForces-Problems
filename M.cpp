@@ -11,27 +11,27 @@ using namespace std;
 const int INF = 1e9;
 
 void solve() {
-    // int
-    string s; 
-    while(cin >> s) {
-        if(s == "E") {
-            cout << "suricato\n";
-        }
-        if (s == "Sim,") {
-            cout << "facochero\n";   
-        }
-        if (s == "Os") {
-            cout << "leao\n";   
+    int n;
+    cin >> n;
+    vector <int> v(n);
+    int s = 0, sl = 0, sr = 0;  
+    for (int i = 0; i <n ; i++) {cin >> v[i]; s += v[i];}
+    for (int i = 1 ; i+1 < n; i++) {
+        sl += v[i-1];
+        sr = s - v[i] - sl;
+        if(sl == sr) {
+            cout << i+1 << endl;
+            return;
         }
     }
-
+    cout << "A cadeira, usa a cadeira!" << endl;
 }
 
 
 int main() {
     fastio;
     int tt = 1;
-    // cin >> tt;
+    cin >> tt;
     while(tt--) {
         solve();
     }

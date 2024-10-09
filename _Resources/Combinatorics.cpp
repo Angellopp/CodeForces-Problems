@@ -6,7 +6,7 @@ using namespace std;
 typedef long long ll;
 
 const int N = 2e5 + 5;
-const int MOD = 1e9 + 7;
+const int MOD = 998244353;
 
 int fact[N];
 
@@ -43,4 +43,5 @@ int main() {
     for (int i = 1; i < N; i++) {
         fact[i] = 1ll * fact[i - 1] * i % MOD;
     }
+    cout << C(6,2);
 }

@@ -8,68 +8,31 @@
 #define rall(x) x.rbegin(), x.rend()
 #define fastio ios_base::sync_with_stdio(false); cin.tie (NULL)
 using namespace std;
-const ll INF = 2e15;
+const ll INF = 1e18;
 const int MAXN = 2e5+5;
 int n;
 
 vector<pair<int, int>> adj[MAXN];
-vector<ll> d(MAXN);
-vector<ll> dc(MAXN);
 vector<bool> f(MAXN);
 
-void sp(int s) {
-    d.assign(n, INF);
-    d[s] = 0;
-    set<pair<ll, int>> q;
-    q.insert({0ll, s});
+void sp(int s, vector<vector<ll>> &d) {
+    auto cmp = [&](auto &a, auto &b){return make_pair(d[a.first][a.second],a) < make_pair(d[b.first][b.second],b);};
+    set<pair<int,int>,decltype(cmp)> q(cmp);
+    d[s][0] = 0;
+    q.insert({s, 0});
     while (!q.empty()) {
-        ll v = q.begin()->second;
+        auto [v, h] = *q.begin();
         q.erase(q.begin());
-        if(d[v] == INF or f[v]) continue;
-        for (auto edge : adj[v]) {
-            int to = edge.first;
-            ll len = edge.second;
-            if (d[v] + len < d[to]) {
-                q.erase({d[to], to});
-                d[to] = d[v] + len;
-                q.insert({d[to], to});
+        bool horse = (h or f[v]);
+        for (auto &[to, len] : adj[v]) {
+            ll dist = horse ? len / 2 : len;
+            if (d[v][h] + dist < d[to][horse]) {
+                q.erase({to, horse});
+                d[to][horse] = d[v][h] + dist;
+                q.insert({to, horse});
             }
         }
     }
-    for (int i = 0; i < n; i++) {
-        cout << i+1 << ": " << d[i] << endl;
-    }
-}
-void spc(int s) {
-    dc.assign(n, INF);
-    dc[s] = f[s] ? 0 : INF;
-    set<pair<ll, int>> q;
-    q.insert({dc[0], s});
-    while (!q.empty()) {
-        ll v = q.begin()->second;
-        dd(v);
-        q.erase(q.begin());
-        // if(dc[v] == INF and !f[v]) continue;
-        for (auto edge : adj[v]) {
-            int to = edge.first;
-            ll len = edge.second;
-            // if()
-            if (min(d[v] + len, dc[v]+len/2) < dc[to]) {
-                q.erase({dc[to], to});
-                dc[to] = min(d[v]+len, dc[v] + len/2);
-                q.insert({dc[to], to});
-            }
-            // if (dc[v]+len/2 < dc[to]) {
-            //     q.erase({dc[to], to});
-            //     dc[to] = dc[v] + len/2;
-            //     q.insert({dc[to], to});
-            // }
-        }
-    }
-    for (int i = 0; i < n; i++) {
-        cout << i+1 << ": " << dc[i] << endl;
-    }
-    
 }
 
 void solve() {
@@ -83,12 +46,15 @@ void solve() {
         adj[u].emplace_back(v,w);
         adj[v].emplace_back(u,w);
     }
-    sp(0);
-    cout << endl;
-    spc(0);
-    for(int i = 0; i < n; i++) adj[i].clear();
-    f.assign(n, 0);
-
+    vector<vector<ll>> d1(n, vector<ll>(2,INF)), d2(n, vector<ll>(2,INF));
+    sp(0, d1);
+    sp(n-1, d2);
+    ll ans = INF;
+    for(int i = 0; i < n; i++) { 
+        ans = min(ans, max(min(d1[i][0], d1[i][1]), min(d2[i][0], d2[i][1])));
+    }
+    cout << (ans == INF ? -1 : ans) << endl;
+    for(int i = 0; i < n; i++) adj[i].clear(), f[i] = 0;
 }
 
 

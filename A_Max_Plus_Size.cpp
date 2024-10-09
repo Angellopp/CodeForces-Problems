@@ -11,19 +11,21 @@ using namespace std;
 const int INF = 1e9;
 
 void solve() {
-    // int
-    string s; 
-    while(cin >> s) {
-        if(s == "E") {
-            cout << "suricato\n";
+    int n, k;
+    cin >> n >> k;
+    vector<int> v(n);
+    for (int i = 0; i < n; i++) cin >> v[i];
+    int ans = 0, cc = 0;
+    for (int i = 0; i < n; i++) {
+        if(v[i] >= k) {
+            cc += v[i];
         }
-        if (s == "Sim,") {
-            cout << "facochero\n";   
-        }
-        if (s == "Os") {
-            cout << "leao\n";   
+        else if(v[i] == 0 and cc > 0) {
+            ans++;
+            cc--;
         }
     }
+    cout << ans << endl;
 
 }
 
@@ -31,7 +33,7 @@ void solve() {
 int main() {
     fastio;
     int tt = 1;
-    // cin >> tt;
+    cin >> tt;
     while(tt--) {
         solve();
     }

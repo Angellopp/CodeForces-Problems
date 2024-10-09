@@ -8,30 +8,18 @@
 #define rall(x) x.rbegin(), x.rend()
 #define fastio ios_base::sync_with_stdio(false); cin.tie (NULL)
 using namespace std;
-const int INF = 1e9;
-
 void solve() {
-    // int
-    string s; 
-    while(cin >> s) {
-        if(s == "E") {
-            cout << "suricato\n";
-        }
-        if (s == "Sim,") {
-            cout << "facochero\n";   
-        }
-        if (s == "Os") {
-            cout << "leao\n";   
-        }
-    }
-
+    ll n; cin >> n;
+    ll a = sqrtl(n);
+    ll b = sqrtl(n+a);
+    cout << n + b << endl;
 }
 
 
 int main() {
     fastio;
     int tt = 1;
-    // cin >> tt;
+    cin >> tt;
     while(tt--) {
         solve();
     }

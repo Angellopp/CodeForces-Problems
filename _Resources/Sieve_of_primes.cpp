@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
-const ll MX = 1e6 + 120;
+const ll MX = 1e7 + 10;
 bool isPrime[MX];
 ll fact[MX];
 
@@ -22,6 +22,7 @@ void sieve() {
         }       
     }
 }
+
 ll getDivisors(ll x) {
     ll ans = 1;
     while (x > 1) {
@@ -35,5 +36,4 @@ ll getDivisors(ll x) {
         }
     }
     return ans;
-    
 }

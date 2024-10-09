@@ -22,8 +22,8 @@ int getFT (int b){
 void setFT (int p, int v) {
     for (int x = p; x < MAXN; x += x & -x) FT[x] = max(FT[x], v);
 }
-int get (int a, int b) { return getFT(b) - getFT(a-1); }
-void update (int x, int v) { setFT(x, v); }
+int get (int a) { return getFT(a); }
+void update (int x, int l, int r) { setFT(l, x); setFT(r+1, -x); }
 
 const int MOD = 998244353;
 

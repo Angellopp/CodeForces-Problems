@@ -8,25 +8,22 @@
 #define rall(x) x.rbegin(), x.rend()
 #define fastio ios_base::sync_with_stdio(false); cin.tie (NULL)
 using namespace std;
-const int INF = 1e9;
+
+
+// const int MAXN = 2e5+5; 
+// int dif[MAXN]{};
 
 void solve() {
-    // int
-    string s; 
-    while(cin >> s) {
-        if(s == "E") {
-            cout << "suricato\n";
-        }
-        if (s == "Sim,") {
-            cout << "facochero\n";   
-        }
-        if (s == "Os") {
-            cout << "leao\n";   
-        }
-    }
-
+    int n;
+    cin >> n;
+    vector<int> a(n), b(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
+    for (int i = 0; i < n; i++) cin >> b[i];
+    sort(rall(a));
+    sort(rall(b));
+    ll ans = a[0] + b[0];
+    cout << ans << endl;
 }
-
 
 int main() {
     fastio;
@@ -36,4 +33,3 @@ int main() {
         solve();
     }
 }
-
